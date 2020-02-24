@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue实例对象 事件</title>
+</head>
+<body>
+    <!-- //一个vue实例就是一个组件对象 -->
+    <div id="app">
+        {{msg}}
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        /* 是不是提供el  一个dom节点  性能会高一点
+
+        什么时候去谈性能 
+            业务优先  在业务逻辑已经完全实现的情况下
+            编码的舒适程度 编码的友好性;上来讲  我们不缺这一点性能 */
+        Vue.config.productionTip = false;
+        var vm = new Vue({
+            
+            template:"<span>{{msg}}</span>",
+            el:"#app",
+            data:{
+                msg:"许光洁"
+            }
+        })
+        
+        //定义vue的自定义事件
+        vm.$on("damu",()=>{console.log("damu");})
+        vm.$on("damu",()=>{console.log("damu");})
+        vm.$on("damu",()=>{console.log("damu");})
+        vm.$on("damu",()=>{console.log("damu");})
+        vm.$on("damu",()=>{console.log("damu");})
+        setInterval(()=>{
+            //触发vue的自定义事件
+            vm.$emit("damu")
+        },1000)
+
+        setTimeout(()=>{
+            vm.$off("damu")
+        },3000)
+    </script>
+</body>
+</html>

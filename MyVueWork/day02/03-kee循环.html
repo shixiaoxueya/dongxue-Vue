@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key值 循环</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list"  :key="index">
+            
+                <span>{{item}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vn = new Vue({
+            el:"#app",
+            data:{
+                list:["芳芳","辰哥","白白","前前","组长","白白"],
+            },
+            methods:{
+                
+            }
+            
+        })
+    </script>
+</body>
+</html>

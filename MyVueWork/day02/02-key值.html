@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key值</title>
+</head>
+<body>
+    <div id="app">
+        <span v-if="flag">a:</span><input v-if="flag" type="text" key="a" >
+        <span v-if="!flag">b:</span><input v-if="!flag" type="text" key="b">
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vn = new Vue({
+            el:"#app",
+            data:{
+                flag:true,
+            },
+            methods:{
+                
+            }
+            
+        })
+    </script>
+</body>
+</html>

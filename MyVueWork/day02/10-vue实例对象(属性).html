@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- //一个vue实例就是一个组件对象 -->
+    <div id="app">
+
+    </div>
+
+    <div id="app2">
+        {{msg}}
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.config.productionTip = false;
+        var vm = new Vue({
+            el:"#app",
+            dongxue:"冬雪",
+            data:{
+                obj:{
+                    name:"许光汉",
+                    age:18
+                }
+            }
+        })
+
+        //当前的根组件
+        console.log(vm.$root === vm);
+
+        //挂载哪
+        console.log(vm.$el);
+
+        //自定义属性   后面. 自己定义的属性 可以使用了
+        console.log(vm.$options.dongxue);
+
+        console.log(vm.$data.obj.name);
+
+
+        // var vm2 = new Vue({
+        //     el:"#app2",
+        //     data:{
+        //         msg:"vue2"
+        //     }
+        // })
+    </script>
+</body>
+</html>

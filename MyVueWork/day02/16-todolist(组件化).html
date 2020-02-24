@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist 组件化 </title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="请输入你的姓名" v-model="val">
+        <button @click="handleClick">add</button>
+
+        <v-list :list="list"></v-list>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            
+            data:{
+                list:["芳芳","辰哥","白白","前前","组长","付昱"],
+                val:"",
+                
+            },
+            methods:{
+                handleClick(){
+                    this.list.push(this.val);
+                    this.val=""
+                }
+            },
+            components:{
+                "v-list":{
+                    template:`<ul><li v-for="item in list">{{item}}</li></ul>`,
+                    props:["list"],
+                }
+            }
+        })
+    </script>
+</body>
+</html>

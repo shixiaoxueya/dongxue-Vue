@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置项-计算属性</title>
+</head>
+<body>
+    <div id="app">
+        {{reverseedMsg}}
+      </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        /* vue配置项:
+            el:选定一个挂载元素
+            data:响应式数据
+            method:事件的回调函数 */
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"上联:懵逼树上懵逼果  懵逼树下你和我"
+            },
+            computed:{
+                reverseedMsg(){
+                    return this.msg.split("").reverse().join("-")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

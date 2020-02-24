@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的细节使用  vue属性 </title>
+</head>
+<body>
+    <div id="app">
+       <!--  一个组件就是一个vue实例
+        vue实例 能 定义vue自定义事件
+            vm.$on
+        如果在组件上使用@符号  相当与是给当前组件定义vue事件 -->
+        <v-btn @click="handleA"></v-btn>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            methods:{
+                handleA(){
+                    console.log("app的点击事件");
+                }
+            },
+            components:{
+                "v-btn":{
+                    template:`<button @click="handleA">点击</button>`,
+                    methods:{
+                        handleA(){
+                            console.log("v-btn的点击事件");
+                            this.$emit("click")
+                        }
+                    }
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

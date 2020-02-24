@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue实例对象 方法</title>
+</head>
+<body>
+    <!-- //一个vue实例就是一个组件对象 -->
+    <div id="app">
+        
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.config.productionTip = false;
+        var vm = new Vue({
+            //确定了根组件的模板
+            template:"<span>{{msg}}</span>",
+            //el:"#app",
+            data:{
+                msg:"许光洁"
+            }
+        })
+        /* //el两个作用
+        确定了vue根组件挂载到那个节点下
+        确定了根组件的模板
+         */
+
+         //确定了vue根组件挂载到那个节点下
+         vm.$mount("#app")
+
+
+    </script>
+</body>
+</html>

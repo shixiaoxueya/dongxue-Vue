@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置项-计算属性</title>
+</head>
+<body>
+    <div id="app">
+        <span>firstName:</span><input type="text" v-model="firstName"> <br>       
+        <span>lastName:</span><input type="text" v-model="lastName"> <br>       
+        <span>fullname:</span><input type="text" v-model="fullname"> <br>     
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                firstName:"T",
+                lastName:"ac",
+                fullname:"T-ac"
+            },
+           /*  watch:{
+                firstName(newVal){
+                    this.fullname = `${newVal}-${this.lastName}`
+                },
+                lastName(newVal){
+                    this.fullname = `${this.firstName}-${newVal}`
+                }
+            } */
+            
+        })
+        vm.$watch("firstName",function (newVal){
+            this.fullname = `${newVal}-${this.lastName}`
+        })
+
+        vm.$watch("lastName",function (newVal){
+            this.fullname = `${this.firstName}-${newVal}`
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小练习</title>
+    <style>
+        span{
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="输入您要查询的数据" v-model="searchVal">
+        <ul>
+            <li v-for="item in searchList">
+                <span>{{item.name}}</span>
+                <span>{{item.age}}</span>
+                <span>{{item.sex}}</span>
+            </li>
+        </ul>
+
+        <button @click="up">按年龄升序</button>
+        <button @click="down">按年龄降序</button>
+        <button @click="old">按年龄原本的顺序</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                searchVal:"",
+                sortType:0,// 1 升序 -1 降序  0 正常顺序
+                list:[
+                    {name:"芳芳1",age:18,sex:"female"},
+                    {name:"辰哥2",age:34,sex:"female"},
+                    {name:"白白1",age:5,sex:"female"},
+                    {name:"前前2",age:54,sex:"female"},
+                    {name:"付昱",age:32,sex:"male"}
+                ]
+            },
+            computed:{
+
+                //依赖searchVal   过滤功能
+                searchList(){
+                    //当前这个数组的api可以干嘛  filter过滤   怎么代表通过测试  返回为true通过测试
+                    //当前这个api有几个参数   callback    item  index  array
+                    //当前数组的api的返回值是什么  返回的是一个新的数组
+                    //当前这个api 会不会影响老数组   filter不会影响
+                    var filterArr = this.list.filter((item,index,array)=>{
+                    return item.name.includes(this.searchVal)
+                })
+
+
+                
+
+
+                //依赖sortType  排序功能
+                switch (this.sortType){
+                    case 0:
+                        break
+                    case 1:
+                        filterArr.sort((a,b)=>{
+                        return  a.age - b.age 
+                    })
+                        break
+                    case -1:
+                    filterArr.sort((a,b)=>{
+                        return  b.age - a.age 
+                    })
+                        break
+                }
+
+                    return filterArr
+                }
+            },
+            methods:{
+                up(){this.sortType=1},
+                down(){this.sortType=-1},
+                old(){this.sortType=0}
+            }
+        })
+    </script>
+</body> 
+</html>
