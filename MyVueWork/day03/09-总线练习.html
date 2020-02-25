@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总线练习</title>
+</head>
+<body>
+    <div id="app">
+        <v-dongxue title="dongxue"></v-dongxue>
+        <v-dongxue title="fangfang"></v-dongxue>
+        <v-dongxue title="chenge"></v-dongxue>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        /*  Object.creat  创建一个新对象  使用一个现有的对象来提供新创建对象的--prototype     对象级别的继承
+            一个vue组件就是一个vue实例?
+                var "v-a" = new VueComponent()
+
+                VueComponent.prototype = Object.creat(Vue.prototype)
+
+                VueComponent.prototype -->对象
+                对象.__proto__  -->Vue,prototype
+               
+
+         */
+
+
+        const dongxue = {
+            //暂存
+            data(){
+                return {
+                    dongxueTitle:this.title
+                }
+            },
+            props:["title"],
+            template:"<i @click='handleC' >{{dongxueTitle}}</i>",
+            mounted(){
+                //当三个v-dongxue被渲染完成时  当前这一段代码 其实已经执行了三次
+                //每次执行这段代码  都是在bus的change事件绑定回调
+                this.bus.$on("change",(title)=>{
+                    this.dongxueTitle= title
+                })
+            },
+            methods:{
+                handleC(){
+                    this.bus.$emit("change",this.dongxueTitle)
+                }
+            }
+            
+        };
+
+        /*
+         const b = {
+            data(){
+                return {
+                    msg:"b-message"
+                }
+            },
+            template:"<i>{{msg}}</i>",
+            mounted(){
+                //这个this是b组件的实例
+                this.dongxue.$on("changeText",(msg)=>{
+                    this.msg = msg;
+                })
+            }
+        };
+         */
+        Vue.config.productionTip = false;
+        //总线
+        Vue.prototype.bus = new Vue();  //也是一个组件
+        var vm = new Vue({
+            el:"#app",
+            
+            components:{
+                "v-dongxue":dongxue,
+            },
+            
+
+        })
+
+    </script>
+</body>
+</html>

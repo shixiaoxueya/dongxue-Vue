@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非父子传值</title>
+    <style>
+        .pink{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-a></v-a>
+        <v-b></v-b>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        
+        //非父子之间传值
+            // 总线机制
+
+
+        const a = {
+            data(){
+                return {
+                    msg:"a-message"
+                }
+            },
+            template:"<i @click='handleC'>{{msg}}</i>",
+            methods:{
+                handleC(){
+                    //this   a组件的实例
+                    this.dongxue.$emit("changeText",this.msg)
+                }
+            }
+        };
+
+        const b = {
+            data(){
+                return {
+                    msg:"b-message"
+                }
+            },
+            template:"<i>{{msg}}</i>",
+            mounted(){
+                //这个this是b组件的实例
+                this.dongxue.$on("changeText",(msg)=>{
+                    this.msg = msg;
+                })
+            }
+        };
+        Vue.config.productionTip = false;
+        //总线
+        Vue.prototype.dongxue = new Vue();  //也是一个组件
+        var vm = new Vue({
+            el:"#app",
+            
+            components:{
+                "v-a":a,
+                "v-b":b,
+            },
+            
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子向父传值(vue自定义事件)</title>
+    <style>
+        .pink{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-arc :num="num" @add="add" class="pink" ></v-arc>
+        <v-arc :num="num" @add="add" class="pink"></v-arc>
+        <i class="pink" style="background-color: orangered">{{appNum}}</i>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        
+        const arc = {
+            props:{
+                num:Number,
+            },
+            data(){
+                return {
+                    arcNum : this.num,
+                    step:1,
+                }
+            },
+            template:"<i @click='handleC'>{{arcNum}}</i>",
+            methods:{
+                handleC(){
+                    this.arcNum += this.step;
+                    this.$emit("add",this.step)
+                }
+            },
+        }
+        Vue.config.productionTip = false
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                num:0,
+                appNum:0,
+            },
+            methods:{
+                add(step){
+                    this.appNum += step
+                }
+            },
+            components:{
+                "v-arc":arc,
+            },
+            
+
+        })
+
+    </script>
+</body>
+</html>

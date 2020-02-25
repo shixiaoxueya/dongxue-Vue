@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue过渡动画</title>
+    <style>
+        .dx-leave{opacity: 1}
+        .dx-leave-active{transition: 1s all}
+        .dx-leave-to{opacity: 0; color: deeppink;}
+
+        .dx-enter{opacity: 0;color: deeppink;}
+        .dx-enter-active{transition: 1s all}
+        .dx-enter-to{opacity: 1; color: red;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+        <button @click = "handleC">点击</button>
+        <transition name="dx">
+            <div v-show="flag">
+                戏子入画  一生天涯
+            </div>
+        </transition>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.config.productionTip = false;
+        Vue.prototype.bus = new Vue();  //也是一个组件
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                flag:true
+            },
+            methods:{
+                handleC(){
+                    this.flag = !this.flag
+                }
+            }
+            
+
+        })
+
+    </script>
+</body>
+</html>
