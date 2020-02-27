@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-focus>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el:"#app",
+            directives:{
+                focus:{
+                    //这是一个回调   会在指令所在的节点  被渲染后重新插入到dom书时执行
+                    inserted:function (el){
+                        //el指令所在的节点
+                        el.focus()
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+</html>

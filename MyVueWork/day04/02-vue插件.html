@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue插件</title>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <v-dx></v-dx>
+        <input type="text" v-focus>
+        {{new Date() | filterDate}}
+    </div>
+
+    <script src="../js/myPlugin.js"></script>
+    <script src="../js/vue.js"></script>
+    <script>
+
+
+        //将自定义的方法取出来进行调用  并将vue构造函数传到当前方法的第一个参数上
+        Vue.use(myPlugin)
+        new Vue({
+            el:"#app",
+            
+        })
+    </script>
+</body>
+</html>

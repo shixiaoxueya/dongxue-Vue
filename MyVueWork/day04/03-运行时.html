@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+
+
+
+    <script src="../js/vue.runtime.js"></script>
+    <script>
+        // 运行时版本: 不支持使用template的     (只能使用render)
+        //         没有编译器
+        // 完整版本:   支持使用template
+        //         运行时+编译器(将template-->render)
+
+        var vm = new Vue({
+            render(createVNode){
+                return createVNode("strong",this.msg)
+            },
+            data:{
+                msg:"msg"
+            }
+        })
+
+        vm.$mount("#app")
+    </script>
+</body>
+</html>
